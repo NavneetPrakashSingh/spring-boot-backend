@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors().and().csrf().disable()
 // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/authenticate", "/register","/login").permitAll().
+                .authorizeRequests().antMatchers("/authenticate", "/register","/login","/webjars/springfox-swagger-ui/**","/v2/api-docs","/swagger-ui.html","/swagger-ui.html/**","/swagger-resources/**").permitAll().
 // all other requests need to be authenticated
         anyRequest().authenticated().and().
 // make sure we use stateless session; session won't be used to
