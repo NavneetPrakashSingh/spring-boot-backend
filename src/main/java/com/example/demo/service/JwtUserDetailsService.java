@@ -3,14 +3,18 @@ package com.example.demo.service;
 import java.util.ArrayList;
 
 import com.example.demo.config.JwtTokenUtil;
-import com.example.demo.dao.UserDao;
-import com.example.demo.model.DAOUser;
-import com.example.demo.model.JwtResponse;
-import com.example.demo.model.UserDTO;
+import com.example.demo.datalayer.dao.UserDao;
+import com.example.demo.datalayer.model.DAOUser;
+import com.example.demo.datalayer.response.IResponse;
+import com.example.demo.datalayer.response.JwtResponse;
+import com.example.demo.datalayer.model.UserDTO;
+import com.example.demo.datalayer.response.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +42,7 @@ public class JwtUserDetailsService implements UserDetailsService {
                 new ArrayList<>());
     }
 
-    public JwtResponse save(UserDTO user) throws UsernameNotFoundException {
+    public IResponse save(UserDTO user) throws UsernameNotFoundException {
 
         DAOUser doesUserExists = userDao.findByEmail(user.getEmail());
         if (doesUserExists != null) {
@@ -55,22 +59,53 @@ public class JwtUserDetailsService implements UserDetailsService {
             if (validateIfUserIsSaved != null) {
                 final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
                 final String token = jwtTokenUtil.generateToken(userDetails);
-                return new JwtResponse(token);
+//                return new JwtResponse(token);
+                IResponse response = new ResponseMessage();
+                response.setStatus("Success");
+                response.setResponse(token);
+                return response;
             } else {
                 throw new UsernameNotFoundException("User already exists");
             }
         }
     }
 
-    public JwtResponse login(UserDTO user) {
+    public IResponse login(UserDTO user) {
         DAOUser userExists = userDao.findByEmail(user.getEmail());
-        //decrypt password and match it with the user entered password
         if (userExists != null) {
-            final UserDetails userDetails = userDetailsService.loadUserByUsername(userExists.getUsername());
-            final String token = jwtTokenUtil.generateToken(userDetails);
-            return new JwtResponse(token);
+            if(bcryptEncoder.matches(user.getPassword(),userExists.getPassword())) {
+                final UserDetails userDetails = userDetailsService.loadUserByUsername(userExists.getUsername());
+                final String token = jwtTokenUtil.generateToken(userDetails);
+                IResponse response = new ResponseMessage();
+                response.setResponse(token);
+                response.setStatus("Success");
+                return response;
+            }else {
+                throw new BadCredentialsException("Invalid credentials");
+            }
         } else {
             throw new UsernameNotFoundException("User Doesn't exists");
         }
     }
+
+    public IResponse delete(UserDTO user, String token) {
+        DAOUser userExists = userDao.findByEmail(user.getEmail());
+        if (userExists != null) {
+            UserDetails userDetails = loadUserByUsername(userExists.getUsername());
+            boolean validToken = jwtTokenUtil.validateToken(token, userDetails);
+            if (validToken) {
+                userDao.deleteById(userExists.getId());
+                IResponse success = new ResponseMessage();
+                success.setStatus("Success");
+                success.setResponse("User Deleted Successfully");
+                return success;
+            } else {
+                throw new UsernameNotFoundException("Token is invalid");
+            }
+        } else {
+            throw new UsernameNotFoundException("User Doesn't exists");
+        }
+
+    }
+
 }

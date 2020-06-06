@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.datalayer.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class DAOUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     @Column
     private String username;
     @Column
@@ -20,6 +20,14 @@ public class DAOUser {
     private String lastName;
     @Column
     private String email;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;

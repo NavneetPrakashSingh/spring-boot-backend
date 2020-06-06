@@ -1,6 +1,6 @@
-package com.example.demo.dao;
+package com.example.demo.datalayer.dao;
 
-import com.example.demo.model.DAOUser;
+import com.example.demo.datalayer.model.DAOUser;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
