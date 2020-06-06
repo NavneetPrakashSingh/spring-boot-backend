@@ -33,3 +33,11 @@ jobs:
         java-version: 1.8
     - name: Run unit test
       run: mvn test
+
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Automerge Branches
+        uses: "pascalgn/automerge-action@4536e8847eb62fe2f0ee52c8fa92d17aa97f932f"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
