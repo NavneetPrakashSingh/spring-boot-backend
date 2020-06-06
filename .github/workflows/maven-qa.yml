@@ -5,9 +5,9 @@ name: Java CI for Dev branch
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ test ]
   pull_request:
-    branches: [ dev ]
+    branches: [ test ]
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-  
+
   test:
     runs-on: ubuntu-latest
     name: Running tests
@@ -36,8 +36,11 @@ jobs:
 
   automerge:
     runs-on: ubuntu-latest
+    name: Automerge Branches
+    needs: [test]
     steps:
       - name: Automerge Branches
         uses: "pascalgn/automerge-action@4536e8847eb62fe2f0ee52c8fa92d17aa97f932f"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: "Automerge"
