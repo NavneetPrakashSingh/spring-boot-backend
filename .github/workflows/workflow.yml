@@ -5,9 +5,12 @@ name: Java CI for Dev branch
 
 on:
   push:
-    branches: [ test ]
+    branches: [ dev ]
   pull_request:
-    branches: [ test ]
+    branches: [ dev,test,master ]
+  check_suite:
+    types:
+      - completed
 
 jobs:
   build:
@@ -43,4 +46,3 @@ jobs:
         uses: "pascalgn/automerge-action@4536e8847eb62fe2f0ee52c8fa92d17aa97f932f"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: "Automerge"
