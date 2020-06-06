@@ -10,9 +10,11 @@ import com.example.demo.datalayer.response.JwtResponse;
 import com.example.demo.datalayer.model.UserDTO;
 import com.example.demo.datalayer.response.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -71,12 +73,16 @@ public class JwtUserDetailsService implements UserDetailsService {
     public IResponse login(UserDTO user) {
         DAOUser userExists = userDao.findByEmail(user.getEmail());
         if (userExists != null) {
-            final UserDetails userDetails = userDetailsService.loadUserByUsername(userExists.getUsername());
-            final String token = jwtTokenUtil.generateToken(userDetails);
-            IResponse response = new ResponseMessage();
-            response.setResponse(token);
-            response.setStatus("Success");
-            return response;
+            if(bcryptEncoder.matches(user.getPassword(),userExists.getPassword())) {
+                final UserDetails userDetails = userDetailsService.loadUserByUsername(userExists.getUsername());
+                final String token = jwtTokenUtil.generateToken(userDetails);
+                IResponse response = new ResponseMessage();
+                response.setResponse(token);
+                response.setStatus("Success");
+                return response;
+            }else {
+                throw new BadCredentialsException("Invalid credentials");
+            }
         } else {
             throw new UsernameNotFoundException("User Doesn't exists");
         }
