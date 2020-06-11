@@ -1,14 +1,11 @@
 package com.example.demo.ServiceTest;
 
-import com.example.demo.config.JwtTokenUtil;
-import com.example.demo.datalayer.response.IResponse;
-import com.example.demo.datalayer.response.JwtResponse;
-import com.example.demo.datalayer.model.UserDTO;
-import com.example.demo.service.JwtUserDetailsService;
+import com.example.demo.businessLayer.service.jwt.JwtTokenUtil;
+import com.example.demo.businessLayer.service.response.IResponse;
+import com.example.demo.dataLayer.model.UserDTO;
+import com.example.demo.businessLayer.service.jwt.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.junit.*;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Order;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
