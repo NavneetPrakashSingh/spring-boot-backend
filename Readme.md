@@ -26,71 +26,26 @@ Within the above diagram, we can see that the entire project is divided into dif
 #### Creating the low-level architecture
 Once there was a brief understanding of how the project would be divided, the next step was to implement the low-level architecture for the project. This is where the flow of application is seen in the form of classes and objects. This is where the the use of design patters, SOLID principles is defined. Consider the following low-level architecture diagram created for this project:
 <img src="https://raw.githubusercontent.com/NavneetPrakashSingh/spring-boot-backend/master/docs/LowLevelArchitecture.png">
+Feel free to zoom the above diagram, this is where the main magic happens. The entire architecture diagram is color coded using the color scheme from high level diagram, it was mainly used to differentiate classes in terms of layers. 
 
+#### Use of design patterns and Test Driven Development
+Two main design patterns were used to implement the project. 
+* The first is the used of builder pattern to generate html tags and scripts. The director in the builder pattern defines the steps needed to create the script and tags. 
+* Second design pattern used was factory pattern to deal with the creation of objects for JWT and authenticaion. 
+* In order to implement the project, test driven development was used, with the main emphasis on code quality and code writing test cases for both backend and frontend services. A separate test module was created where unit and integration test cases were written. These unit test cases run each time when a change of code happens (pull request and code push).
 
-### Landing Page
-Currently it is working on all NSE (India) Stocks, BSE (India) Stocks Symbol will be added soon.
+### Step 2: Technology Used
+Inorder to implement this project the following technology have been used:
+* Frontend: Angular
+* Backend: Java Spring Boot
+* CI/CD: Github Actions
+* Database: MySQL
 
-![](https://iharsh234.github.io/WebApp/images/demo/web_app_face.JPG)
+### Step 3: Creating the first prototype
+Once the technological stack was decided, it was time to implement the project. Using the best principles and practices, the first prototype was created. The frontend of the website where the user has the flexibility to create the notifications and generate the script associated with it. This script could be added to the website and notifications would appear as per the set timeline. Consider the following image:
+<img src="https://raw.githubusercontent.com/NavneetPrakashSingh/spring-boot-backend/dev/docs/SampleOutput2.png">
+As seen above, the user has the complete flexibility to customized their own notification, with the choice of colors, text colors and customization, the user can easily decide how the notificaion should appear to the user.
 
-### Query Filled Form
-![](https://iharsh234.github.io/WebApp/images/demo/demo_query.JPG)
-
-### Charts
-![](https://iharsh234.github.io/WebApp/images/demo/demo_chart1.JPG)
-![](https://iharsh234.github.io/WebApp/images/demo/demo_chart2.JPG)
-![](https://iharsh234.github.io/WebApp/images/demo/demo_chart3.JPG)
-
-
-## Mobile support
-The WebApp is compatible with devices of all sizes and all OS's, and consistent improvements are being made.
-
-![](https://iharsh234.github.io/WebApp/images/demo/mobile.png)
-
-
-
-
-## [Usage](https://iharsh234.github.io/WebApp/) 
-
-### Development
-Want to contribute? Great!
-
-To fix a bug or enhance an existing module, follow these steps:
-
-- Fork the repo
-- Create a new branch (`git checkout -b improve-feature`)
-- Make the appropriate changes in the files
-- Add changes to reflect the changes made
-- Commit your changes (`git commit -am 'Improve feature'`)
-- Push to the branch (`git push origin improve-feature`)
-- Create a Pull Request 
-
-### Bug / Feature Request
-
-If you find a bug (the website couldn't handle the query and / or gave undesired results), kindly open an issue [here](https://github.com/iharsh234/WebApp/issues/new) by including your search query and the expected result.
-
-If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/iharsh234/WebApp/issues/new). Please include sample queries and their corresponding results.
-
-
-## Built with 
-
-- [jQuery - Ajax](http://www.w3schools.com/jquery/jquery_ref_ajax.asp) - jQuery simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.
-- [Google Chart API](https://developers.google.com/chart/interactive/docs/quick_start) - Free , Rich Gallery , Customizable and Cross-browser compatible.
-- [Bootstrap](http://getbootstrap.com/) - Extensive list of components and  Bundled Javascript plugins.
-
-
-## To-do
-- Add BSE (India) Symbol to the current App.
-- Decide comparison models of Stocks. (suggestions are most welcome).
-- Another WebApp, capable of comparing at least 10 stocks.
-
-## Team
-
-[![Harsh Vijay](https://avatars1.githubusercontent.com/u/12688534?v=3&s=144)](https://github.com/iharsh234)  | [![Quandl.com](https://github.com/iharsh234/WebApp/blob/master/images/quandl.jpg)](https://www.quandl.com/)
----|---
-[Harsh Vijay ](https://github.com/iharsh234) |[Quandl](https://www.quandl.com)
-
-## [License](https://github.com/iharsh234/WebApp/blob/master/LICENSE.md)
-
-MIT © [Harsh Vijay ](https://github.com/iharsh234)
+The script that was created was added to an the website where the user wanted to use and once the script was added, the notification started to appear as shown in the following screenshot:
+<img src="https://raw.githubusercontent.com/NavneetPrakashSingh/spring-boot-backend/dev/docs/SampleOutput.png">
 
