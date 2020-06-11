@@ -1,6 +1,4 @@
-# ParkMe
-
-Parking system for a hassle free parking.
+# NotifyMe
 
 ## Getting Started
 
