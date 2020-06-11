@@ -55,9 +55,9 @@ Inorder to implement this project the following technology have been used:
 * CI/CD: Github Actions
 * Database: MySQL
 
-### Step 4: Creating the first prototype
+### Step 4: Creating the first prototype 
 
-Once the technological stack was decided, it was time to implement the project. Using the best principles and practices, the first prototype was created. The frontend of the website where the user has the flexibility to create the notifications and generate the script associated with it. This script could be added to the website and notifications would appear as per the set timeline. Consider the following image:
+Once the technological stack was decided, it was time to implement the project in an Agile manner. Using the best principles and practices, the first prototype was created. The frontend of the website where the user has the flexibility to create the notifications and generate the script associated with it. This script could be added to the website and notifications would appear as per the set timeline. Consider the following image:
 
 <img src="https://raw.githubusercontent.com/NavneetPrakashSingh/spring-boot-backend/dev/docs/SampleOutput2.png">
 
