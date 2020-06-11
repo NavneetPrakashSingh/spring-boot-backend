@@ -14,7 +14,13 @@
 
 ## Approach taken to implement the project
 
-### Step1: Working on the architectural diagram
+### Step 1: Creating the Scrum board
+
+In order to manage the project and deadlines associated with the project, the first step I take is to set up the GitHub scrum board associated with the project. Link of the board can be found here: [Board link](https://github.com/NavneetPrakashSingh/spring-boot-backend/projects/2). 
+
+The main purpose of setting up a scrum board is to monitor the progress of the project. The task associated with the board can be attached to issues, such that when the issue closes, it would automatically change it from pending to completed state. 
+
+### Step 2: Working on the architectural diagram
 
 The first approach I take even before drawing the architectural diagram, is to make sure that the requirements related to the project is understood properly. Once the requirements are understood well, it becomes easy to visualize things. The next step I take is to create the architectural diagram associated with it.
 
@@ -41,7 +47,7 @@ Two main design patterns were used to implement the project.
 * Second design pattern used was factory pattern to deal with the creation of objects for JWT and authenticaion. 
 * In order to implement the project, test driven development was used, with the main emphasis on code quality and code writing test cases for both backend and frontend services. A separate test module was created where unit and integration test cases were written. These unit test cases run each time when a change of code happens (pull request and code push).
 
-### Step 2: Technology Stack
+### Step 3: Technology Stack
 
 Inorder to implement this project the following technology have been used:
 * Frontend: Angular
@@ -49,7 +55,7 @@ Inorder to implement this project the following technology have been used:
 * CI/CD: Github Actions
 * Database: MySQL
 
-### Step 3: Creating the first prototype
+### Step 4: Creating the first prototype
 
 Once the technological stack was decided, it was time to implement the project. Using the best principles and practices, the first prototype was created. The frontend of the website where the user has the flexibility to create the notifications and generate the script associated with it. This script could be added to the website and notifications would appear as per the set timeline. Consider the following image:
 
@@ -63,6 +69,6 @@ The script that was created was added to an the website where the user wanted to
 
 From the above screenshot, we can see that the notification appeared as per the target we had.
 
-### Step 4: Integrating CI/CD 
+### Step 5: Integrating CI/CD 
 
 Once the prototype was running correctly, the next step was to integrate CI/CD with the project such that the test cases runs every time a pull request is raised. This process was integrated using Github Actions, using Yaml files. The files for CI/CD can be found in the workflow folder.
